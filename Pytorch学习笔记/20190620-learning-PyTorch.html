@@ -1,0 +1,314 @@
+<!DOCTYPE html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="https://fonts.loli.net/css?family=Noto+Serif+SC:400,500,700&display=swap&subset=chinese-simplified" rel="stylesheet"><link href="https://fonts.loli.net/css?family=Parisienne" rel="stylesheet"><link href="https://fonts.loli.net/css?family=Pinyon+Script" rel="stylesheet"><link href="https://fonts.loli.net/css?family=EB+Garamond:400,500,700" rel="stylesheet"><link href="https://fonts.loli.net/css?family=Source+Code+Pro:400,700" rel="stylesheet"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="学习笔记,Pytorch,Deep Learning,"><meta name="description" content="将PyTorch的学习过程记录下来。"><meta name="keywords" content="学习笔记,Pytorch,Deep Learning"><meta property="og:type" content="article"><meta property="og:title" content="PyTorch学习之路"><meta property="og:url" content="https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch.html"><meta property="og:site_name" content="Naqin"><meta property="og:description" content="将PyTorch的学习过程记录下来。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch/LeNet.png"><meta property="og:updated_time" content="2019-11-04T17:12:51.098Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="PyTorch学习之路"><meta name="twitter:description" content="将PyTorch的学习过程记录下来。"><meta name="twitter:image" content="https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch/LeNet.png"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"5.1.4",sidebar:{position:"left",display:"hide",offset:12,b2t:!1,scrollpercent:!0,onmobile:!1,dimmer:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch.html"><title>PyTorch学习之路 | Naqin</title><meta name="baidu-site-verification" content="rqAw8UHNKS"><meta name="google-site-verification" content="r_iyjm0f8KcvC9kIpQiyZx3pmWlLY-gwBv9KsOF2AYo"></head><body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Naqin</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">Run! Forest,run!</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section">关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section">标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section">分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section">归档</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger">搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="https://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Naqin"><meta itemprop="description" content><meta itemprop="image" content="/uploads/tu6.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Naqin"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">PyTorch学习之路</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T21:01:34+08:00">2019-06-20 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Pytorch学习笔记/" itemprop="url" rel="index"><span itemprop="name">Pytorch学习笔记</span></a></span></span><div class="post-wordcount"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">934 字</span></div></div></header><div class="post-body" itemprop="articleBody"><blockquote class="blockquote-center"><p>将PyTorch的学习过程记录下来。</p></blockquote><a id="more"></a><h1 id="什么是PyTorch"><a href="#什么是PyTorch" class="headerlink" title="什么是PyTorch"></a>什么是PyTorch</h1><h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="张量与操作"><a href="#张量与操作" class="headerlink" title="张量与操作"></a>张量与操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment"># 张量</span></span><br><span class="line"><span class="comment"># =============================================================================</span></span><br><span class="line">x = torch.Tensor(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">print(x)</span><br><span class="line"> <span class="comment">#print(x.size(),type(x.size()))</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 操作</span></span><br><span class="line">y = torch.rand(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment"># # =============================================================================</span></span><br><span class="line">  <span class="comment"># 法1</span></span><br><span class="line">print(x + y)</span><br><span class="line">  <span class="comment"># 法2</span></span><br><span class="line">print(torch.add(x,y))</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 定义一个输出张量</span></span><br><span class="line">result = torch.Tensor(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y, out = result)</span><br><span class="line">print(result)</span><br><span class="line">  <span class="comment"># in-place追加</span></span><br><span class="line">y.add_(x)</span><br><span class="line">print(y)</span><br><span class="line"><span class="comment"># # =============================================================================</span></span><br><span class="line">print(y)</span><br><span class="line"> <span class="comment">#x.copy_(y)</span></span><br><span class="line"> <span class="comment">#print(x)</span></span><br><span class="line">x.t_()</span><br><span class="line">print(x)</span><br><span class="line">print(x[:,<span class="number">1</span>])</span><br><span class="line"><span class="comment"># =============================================================================</span></span><br></pre></td></tr></table></figure><p>注意：torch包中带有下划线的op说明是就地进行的</p><h2 id="Nmupy转换"><a href="#Nmupy转换" class="headerlink" title="Nmupy转换"></a>Nmupy转换</h2><h3 id="将Torch张量转化为numpy数组"><a href="#将Torch张量转化为numpy数组" class="headerlink" title="将Torch张量转化为numpy数组"></a>将Torch张量转化为numpy数组</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment"># =============================================================================</span></span><br><span class="line">  <span class="comment"># Nmupy 转换</span></span><br><span class="line">a = torch.ones(<span class="number">5</span>)</span><br><span class="line">print(a)</span><br><span class="line">b = a.numpy()</span><br><span class="line">print(b)</span><br><span class="line"> <span class="comment"># 当给tensor a列表的每个值加一， numpys列表中的每个值加一</span></span><br><span class="line">a.add_(<span class="number">1</span>)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure><h3 id="将numpy数组转化为Torch张量"><a href="#将numpy数组转化为Torch张量" class="headerlink" title="将numpy数组转化为Torch张量"></a>将numpy数组转化为Torch张量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment"># =============================================================================</span></span><br><span class="line"><span class="comment"># 将numpy数组转换成Torch张量</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.ones(<span class="number">5</span>)</span><br><span class="line">b = torch.from_numpy(a)</span><br><span class="line">np.add(a, <span class="number">1</span>, out=a)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">a[<span class="number">0</span>] = <span class="number">333</span></span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line"><span class="comment">## 结论和上面一样，无论是从tensor转换成numpy 还是反过来，都是一个内容修改，另一个也会变</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># =============================================================================</span></span><br></pre></td></tr></table></figure><h2 id="CUDA传感器"><a href="#CUDA传感器" class="headerlink" title="CUDA传感器"></a>CUDA传感器</h2><p>cuda传感器是一个基于Python的科学计算包，主要分入如下2部分：</p><ul><li>使用GPU的功能代替numpy</li><li>一个深刻的学习研究平台，提供最大的灵活性和速度</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CUDA传感器</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">x = torch.Tensor(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">y = torch.rand(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():  <span class="comment"># 判断cuda是否可用</span></span><br><span class="line">  x = x.cuda()</span><br><span class="line">  print(x)</span><br><span class="line">  y = y.cuda()</span><br><span class="line">  x + y</span><br></pre></td></tr></table></figure><h1 id="Autograd：自动分化"><a href="#Autograd：自动分化" class="headerlink" title="Autograd：自动分化"></a>Autograd：自动分化</h1><p>autograd包是<code>PyTorch</code>所有神经网络的核心。</p><p><code>autograd</code>包为<code>Tensors</code>上的所有操作提供了自动区分。它是一个逐个运行的框架，这意味着您的<code>backprop</code>由您的代码运行定义，每一次迭代都可以不同。</p><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><code>autograd.Variable</code>是包的<strong>中央类</strong>。它包含一个<code>Tensor</code>，并支持几乎所有定义的操作。完成计算后，可以调用<code>.backward()</code>并自动计算所有梯度。</p><p>变量与变量是有创造关系的，你可以对这些关系组成的函数求导。</p><p>创造一个变量：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line">x = Variable(torch.ones(<span class="number">2</span>,<span class="number">2</span>),requires_grad= <span class="literal">True</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure><p><u>输出</u>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>]], requires_grad=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure><p>做一个变量的操作：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = x + <span class="number">2</span></span><br><span class="line">print(y)</span><br></pre></td></tr></table></figure><p><u>输出</u>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">3.</span>, <span class="number">3.</span>],</span><br><span class="line">        [<span class="number">3.</span>, <span class="number">3.</span>]], grad_fn=&lt;AddBackward0&gt;)</span><br></pre></td></tr></table></figure><p><code>y</code> 是由于操作造成的，所以它有一个创造者。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(y.creator)  <span class="comment"># 报错，已替换为grad_fn</span></span><br><span class="line">print(y.grad_fn)</span><br></pre></td></tr></table></figure><p><u>输出</u>:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;AddBackward0 object at <span class="number">0x00000226055E8940</span>&gt;</span><br></pre></td></tr></table></figure><p>对y进行更多的操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">z = y * y * <span class="number">3</span></span><br><span class="line">out = z.mean()</span><br><span class="line">print(z,out)</span><br></pre></td></tr></table></figure><p><u>输出:</u></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">27.</span>, <span class="number">27.</span>],</span><br><span class="line">        [<span class="number">27.</span>, <span class="number">27.</span>]], grad_fn=&lt;MulBackward0&gt;) tensor(<span class="number">27.</span>, grad_fn=&lt;MeanBackward0&gt;)</span><br></pre></td></tr></table></figure><p><strong>梯度</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">out.backward()</span><br></pre></td></tr></table></figure><p>打印梯度 d(out)/dx</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(x.grad)</span><br></pre></td></tr></table></figure><p><u>输出:</u></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">4.5000</span>, <span class="number">4.5000</span>],</span><br><span class="line">        [<span class="number">4.5000</span>, <span class="number">4.5000</span>]])</span><br></pre></td></tr></table></figure><p>自动求导可以做很多疯狂的事情</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = torch.rand(<span class="number">3</span>)</span><br><span class="line">x = Variable(x, requires_grad= <span class="literal">True</span>)</span><br><span class="line">y = x * <span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> y.data.norm()&lt; <span class="number">1000</span>:</span><br><span class="line">    y = y * <span class="number">2</span></span><br><span class="line">    </span><br><span class="line">print(y)</span><br></pre></td></tr></table></figure><p>解释：</p><p><code>y.data.norm()</code>是用来求y的二范数</p><p>y的二范数小于1000的约束条件下，y的公式其实是 <code>y = 1024*x</code></p><p><u>输出：</u></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([<span class="number">591.5636</span>, <span class="number">884.0807</span>, <span class="number">773.9807</span>], grad_fn=&lt;MulBackward0&gt;)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gradients = torch.FloatTensor([<span class="number">0.1</span>, <span class="number">1.0</span>, <span class="number">0.0001</span>])</span><br><span class="line">y.backward(gradients)</span><br><span class="line">print(x.grad)</span><br></pre></td></tr></table></figure><p><u>输出：</u></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([<span class="number">1.0240e+02</span>, <span class="number">1.0240e+03</span>, <span class="number">1.0240e-01</span>])</span><br></pre></td></tr></table></figure><h1 id="LeNet："><a href="#LeNet：" class="headerlink" title="LeNet："></a>LeNet：</h1><p><img src="/Pytorch学习笔记/20190620-learning-PyTorch/LeNet.png" alt="LeNet"></p><h2 id="显示CIFAR数据集图片"><a href="#显示CIFAR数据集图片" class="headerlink" title="显示CIFAR数据集图片"></a>显示CIFAR数据集图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">transform = transforms.Compose([transforms.ToTensor(),      <span class="comment"># 转为tensor</span></span><br><span class="line">                                transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))  <span class="comment"># 归一化</span></span><br><span class="line">                                ])</span><br><span class="line">trainset = torchvision.datasets.CIFAR10(root=<span class="string">"./data"</span>, train=<span class="literal">True</span>, download=<span class="literal">True</span>, transform=transform)</span><br><span class="line">print(len(trainset))</span><br><span class="line">trainloader = torch.utils.data.DataLoader(trainset, batch_size=<span class="number">4</span>,</span><br><span class="line">                                          shuffle=<span class="literal">True</span>, num_workers=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">testset = torchvision.datasets.CIFAR10(root=<span class="string">'./data'</span>, train=<span class="literal">False</span>, download=<span class="literal">True</span>, transform=transform)</span><br><span class="line">testloader = torch.utils.data.DataLoader(testset, batch_size=<span class="number">4</span>,</span><br><span class="line">                                          shuffle=<span class="literal">False</span>, num_workers=<span class="number">2</span>)</span><br><span class="line">classes = (<span class="string">'plane'</span>, <span class="string">'car'</span>, <span class="string">'bird'</span>, <span class="string">'cat'</span>,</span><br><span class="line">           <span class="string">'deer'</span>, <span class="string">'dog'</span>, <span class="string">'frog'</span>, <span class="string">'horse'</span>, <span class="string">'ship'</span>, <span class="string">'truck'</span>)</span><br><span class="line"><span class="comment"># img, target = trainset[0]</span></span><br><span class="line"><span class="comment"># print(img)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imshow</span><span class="params">(img)</span>:</span></span><br><span class="line">    img =img / <span class="number">2</span> + <span class="number">0.5</span>  <span class="comment"># unnormalize</span></span><br><span class="line">    npimg = img.numpy()</span><br><span class="line">    plt.imshow(np.transpose(npimg, (<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>)))</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:           <span class="comment"># 开启多进程</span></span><br><span class="line">    dataiter = iter(trainloader)</span><br><span class="line">    images, labels = dataiter.next()</span><br><span class="line">    imshow(torchvision.utils.make_grid(images))</span><br><span class="line">    print(<span class="string">' '</span>.join(<span class="string">'%5s'</span>%classes[labels[j]] <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>)))</span><br></pre></td></tr></table></figure><h2 id="定义网络"><a href="#定义网络" class="headerlink" title="定义网络"></a>定义网络</h2><p>等先把基础写完再继续补充😄</p><p>未完待续！！！</p><hr></div><div><div><div style="text-align:center;color:#555;font-size:14px">-------------The End-------------</div></div></div><div><div class="my_post_copyright"><script src="/js/src/clipboard.min.js"></script><script src="/js/src/jquery2.0/jquery.min.js"></script><script src="/js/src/sweetalert.min.js"></script><p><span>本文标题:</span><a href="/Pytorch学习笔记/20190620-learning-PyTorch.html">PyTorch学习之路</a></p><p><span>文章作者:</span><a href="/" title="访问 Naqin 的个人博客">Naqin</a></p><p><span>发布时间:</span>2019年06月20日 - 21:06</p><p><span>最后更新:</span>2019年11月05日 - 01:11</p><p><span>原始链接:</span><a href="/Pytorch学习笔记/20190620-learning-PyTorch.html" title="PyTorch学习之路">https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch.html</a> <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://chennq.com/Pytorch学习笔记/20190620-learning-PyTorch.html" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");$(".fa-clipboard").click(function(){clipboard.on("success",function(){swal({title:"",text:"复制成功",icon:"success",showConfirmButton:!0})})})</script></div><div><div id="wechat_subscriber" style="display:block;padding:10px 0;margin:20px auto;width:100%;text-align:center"><img id="wechat_subscriber_qcode" src="/uploads/wechat.jpg" alt="Naqin wechat" style="width:200px;max-width:100%"><div>欢迎看官加我微信！</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>打赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="Naqin 微信支付"><p>微信支付</p></div></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/学习笔记/" rel="tag"><i class="fa fa-tag"></i> 学习笔记</a> <a href="/tags/Pytorch/" rel="tag"><i class="fa fa-tag"></i> Pytorch</a> <a href="/tags/Deep-Learning/" rel="tag"><i class="fa fa-tag"></i> Deep Learning</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/JavaScript/20190620-JavaScript_2.html" rel="next" title="JS中的JSON"><i class="fa fa-chevron-left"></i> JS中的JSON</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/bootstrap/20190620-bootstrap_1.html" rel="prev" title="Web前端-bootstrap">Web前端-bootstrap <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div id="gitalk-container"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/tu6.jpg" alt="Naqin"><p class="site-author-name" itemprop="name">Naqin</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">118</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">28</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">39</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/atlasnq" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:1121559571@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是PyTorch"><span class="nav-number">1.</span> <span class="nav-text">什么是PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门"><span class="nav-number">1.1.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#张量与操作"><span class="nav-number">1.1.1.</span> <span class="nav-text">张量与操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nmupy转换"><span class="nav-number">1.2.</span> <span class="nav-text">Nmupy转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将Torch张量转化为numpy数组"><span class="nav-number">1.2.1.</span> <span class="nav-text">将Torch张量转化为numpy数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将numpy数组转化为Torch张量"><span class="nav-number">1.2.2.</span> <span class="nav-text">将numpy数组转化为Torch张量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA传感器"><span class="nav-number">1.3.</span> <span class="nav-text">CUDA传感器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autograd：自动分化"><span class="nav-number">2.</span> <span class="nav-text">Autograd：自动分化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.1.</span> <span class="nav-text">变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LeNet："><span class="nav-number">3.</span> <span class="nav-text">LeNet：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示CIFAR数据集图片"><span class="nav-number">3.1.</span> <span class="nav-text">显示CIFAR数据集图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义网络"><span class="nav-number">3.2.</span> <span class="nav-text">定义网络</span></a></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-heartbeat"></i> </span><span class="author" itemprop="copyrightHolder">Naqin</span></div><div class="busuanzi-count"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv">本站总访客 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人 </span><span class="site-pv">本站总访问 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><link rel="stylesheet" href="/css/gitalk.css"><script src="/js/src/gitalk.min.js"></script><div id="gitalk-container"></div><script src="/js/src/md5.min.js"></script><script type="text/javascript">var gitalk=new Gitalk({clientID:"377dab7c4f5a8991f28c",clientSecret:"7440711408c01caf520bc000a5a353aef73a142b",repo:"guestbook",owner:"atlasnq",admin:["atlasnq"],id:md5(location.pathname),distractionFreeMode:"true"});gitalk.render("gitalk-container")</script><script type="text/javascript">// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script></body></html>
