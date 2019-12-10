@@ -2,6 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chennq.com/about/index.html</loc>
+    
+    <lastmod>2019-12-10T12:32:36.043Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20191127-python-basic-data-type-underlying-implementations.html</loc>
+    
+    <lastmod>2019-12-10T10:01:38.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20190401-python-string.html</loc>
+    
+    <lastmod>2019-12-10T09:25:08.800Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20190320-python_index.html</loc>
+    
+    <lastmod>2019-12-10T06:57:06.594Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20190320-python-basic-knowledge.html</loc>
+    
+    <lastmod>2019-12-09T12:20:32.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190715-django_12_form.html</loc>
+    
+    <lastmod>2019-12-02T07:16:36.109Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20191029-python-memory-management-garbage-collection.html</loc>
+    
+    <lastmod>2019-11-29T14:29:42.397Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190724-django_15_modelformset.html</loc>
+    
+    <lastmod>2019-11-26T08:14:23.323Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190718-django_13_ModelForm.html</loc>
+    
+    <lastmod>2019-11-26T07:44:28.193Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190710-django_9_middleware.html</loc>
+    
+    <lastmod>2019-11-26T07:23:50.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190713-django_11_ajax.html</loc>
+    
+    <lastmod>2019-11-26T07:06:41.964Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190709-django_8_cookie_session.html</loc>
+    
+    <lastmod>2019-11-26T07:00:11.166Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20190521-python-concurrent-programming.html</loc>
+    
+    <lastmod>2019-11-22T11:02:13.731Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chennq.com/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/20190920-Web_Spider__2.html</loc>
     
     <lastmod>2019-11-16T07:59:25.830Z</lastmod>
@@ -464,13 +555,6 @@
   </url>
   
   <url>
-    <loc>https://chennq.com/learn-python/20190320-python-basic-knowledge.html</loc>
-    
-    <lastmod>2019-11-04T17:06:29.457Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://chennq.com/learn-python/20190519-python-programming-with-threads.html</loc>
     
     <lastmod>2019-11-04T17:06:13.561Z</lastmod>
@@ -481,20 +565,6 @@
     <loc>https://chennq.com/learn-python/20190518-python-programming-with-multiprocesses.html</loc>
     
     <lastmod>2019-11-04T17:05:58.144Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/learn-python/20190521-python-concurrent-programming.html</loc>
-    
-    <lastmod>2019-11-04T17:05:37.195Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/learn-python/20190401-python-string.html</loc>
-    
-    <lastmod>2019-11-04T17:05:16.465Z</lastmod>
     
   </url>
   
@@ -681,20 +751,6 @@
   </url>
   
   <url>
-    <loc>https://chennq.com/django/20190710-django_9_middleware.html</loc>
-    
-    <lastmod>2019-11-04T16:47:31.234Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/django/20190709-django_8_cookie_session.html</loc>
-    
-    <lastmod>2019-11-04T16:47:11.416Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://chennq.com/django/20190719-django_14_QueryDict.html</loc>
     
     <lastmod>2019-11-04T16:46:44.693Z</lastmod>
@@ -702,37 +758,9 @@
   </url>
   
   <url>
-    <loc>https://chennq.com/django/20190724-django_15_modelformset.html</loc>
-    
-    <lastmod>2019-11-04T16:46:26.813Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/django/20190718-django_13_ModelForm.html</loc>
-    
-    <lastmod>2019-11-04T16:45:21.591Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/django/20190715-django_12_form.html</loc>
-    
-    <lastmod>2019-11-04T16:45:03.302Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://chennq.com/django/20190712-django_10_csrf.html</loc>
     
     <lastmod>2019-11-04T16:44:04.088Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/django/20190713-django_11_ajax.html</loc>
-    
-    <lastmod>2019-11-04T16:43:37.966Z</lastmod>
     
   </url>
   
@@ -786,13 +814,6 @@
   </url>
   
   <url>
-    <loc>https://chennq.com/learn-python/20190320-python_index.html</loc>
-    
-    <lastmod>2019-11-04T16:19:59.279Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://chennq.com/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
     
     <lastmod>2019-11-04T16:19:45.018Z</lastmod>
@@ -831,13 +852,6 @@
     <loc>https://chennq.com//404.html</loc>
     
     <lastmod>2019-09-21T15:50:12.893Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/about/index.html</loc>
-    
-    <lastmod>2019-09-07T15:02:37.262Z</lastmod>
     
   </url>
   
