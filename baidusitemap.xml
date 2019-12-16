@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chennq.com/Flask/20191214-flask_5.html</loc>
+    <lastmod>2019-12-16</lastmod>
+  </url>  <url>
+    <loc>https://chennq.com/Flask/20191210-flask_4.html</loc>
+    <lastmod>2019-12-16</lastmod>
+  </url>  <url>
+    <loc>https://chennq.com/Flask/20191208-flask_3.html</loc>
+    <lastmod>2019-12-16</lastmod>
+  </url>  <url>
+    <loc>https://chennq.com/Flask/20191215-flask_6.html</loc>
+    <lastmod>2019-12-16</lastmod>
+  </url>  <url>
+    <loc>https://chennq.com/Flask/20191202-flask_0.html</loc>
+    <lastmod>2019-12-14</lastmod>
+  </url>  <url>
     <loc>https://chennq.com/Flask/20191205-flask_2.html</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
@@ -20,9 +35,6 @@
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://chennq.com/learn-python/20191127-python-basic-data-type-underlying-implementations.html</loc>
-    <lastmod>2019-12-11</lastmod>
-  </url>  <url>
-    <loc>https://chennq.com/Flask/20191202-flask_0.html</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://chennq.com/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
