@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chennq.com/git/20190901-git_1_basic_use.html</loc>
+    
+    <lastmod>2019-12-22T09:51:57.106Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chennq.com/MySQL%E5%AD%A6%E4%B9%A0/20190528-Python_MySQL.html</loc>
     
     <lastmod>2019-12-22T08:09:29.205Z</lastmod>
@@ -712,13 +719,6 @@
     <loc>https://chennq.com/Hexo/20190704-hexo-next-diy.html</loc>
     
     <lastmod>2019-11-04T17:00:08.348Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/git/20190901-git_1_basic_use.html</loc>
-    
-    <lastmod>2019-11-04T16:54:33.294Z</lastmod>
     
   </url>
   
