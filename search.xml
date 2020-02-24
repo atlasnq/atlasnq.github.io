@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数据结构与算法-递归与动态规划</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20200209-data-struct-dynamic-programming.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>本篇介绍动态规划相关的基础题目。</p></blockquote><a id="more"></a><hr><p>持续更新中！！！</p>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-哈希表</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20200120-data-struct-hash-table.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>本篇介绍哈希表相关的基础题目。</p></blockquote><a id="more"></a><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><h4 id="认识哈希函数和哈希表"><a href="#认识哈希函数和哈希表" class="headerlink" title="认识哈希函数和哈希表"></a>认识哈希函数和哈希表</h4><p>哈希函数：传入字符串返回哈希码。</p><p>特征：</p><ol><li>输入的域是无穷大的；</li><li>输出的域是有限的；</li><li>输入一样，输出一样（不含任何随机成分）；</li><li>当输入不一样的时候存在输出一样的可能性；（哈希碰撞）</li><li>虽然会存在两个不同的输入得到了相同的输出，但是当不同的输入特别多时，将在整个S域中均匀的出现它们的返回值（均匀分布）；（哈希函数的离散型）</li><li>与输入的规律是没有关系的；（所以哈希函数也可用来打乱输入样本的规律）（雪崩效应）</li></ol><p>推论：</p><ul><li>在有很多很多input点，在hash后 <code>%m</code>，最终的返回会在<code>0 ~ m-1</code>这个范围，在这个范围中也均匀分布。</li></ul><p>需要1000个函数，且要求相对独立，有一个hash函数，该怎么做出1000个呢？</p><ul><li>把一个hash函数拆成两个（两个种子）（如果返回值为16个字符，前8个字符为h1；后8个字符为h2）(每个位置上的字符较其它位置上的字符都是独立的)；</li><li><code>h1 + 1*h2 = h3</code></li><li><code>h1 + 2*h2 = h4</code></li><li><code>h1 + 3*h2 = h5</code></li><li>这样改变系数可以做出1000个来。</li></ul><p>哈希表的经典结构：</p><figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span> -&gt; (B,<span class="number">3</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line">...</span><br><span class="line"><span class="number">10</span> -&gt; (A,<span class="number">17</span>) -&gt; (左,<span class="number">31</span>)   重复的<span class="type">key</span>将覆盖value，不重复将挂在上一个<span class="type">key</span>的后面</span><br><span class="line"><span class="number">11</span></span><br><span class="line">...</span><br><span class="line"><span class="number">16</span></span><br><span class="line"></span><br><span class="line">经典结构中是一个桶 + 单链表</span><br><span class="line"></span><br><span class="line">常用的操作：</span><br><span class="line">put(key1,value1)   -&gt;  key1 -&gt; (hash) -&gt; hashcode1 -&gt; %<span class="number">17</span> = <span class="number">0</span>~<span class="number">16</span> </span><br><span class="line">get(key1)</span><br><span class="line">remove(key1)</span><br></pre></td></tr></table></figure><ul><li>桶 + 单链表</li><li>特点：当我们不断地加入key，这个表中每个节点的内容（链表中的节点）是均匀增加的。</li><li>这样当一条链中的数量到达了上限，那我们可以认为每条链都将达到上限，这样将经历扩容</li><li>增删改查都是O(1)</li></ul><p>扩容：</p><ul><li>将每个值取出用它的哈希值重新mod一个数，然后放入新的哈希表中。</li></ul><p>为什么扩容还能做到O(1)？</p><ul><li>首先这是一个平均复杂度，虽然每次扩容的代价可能会很高，但需要扩容的频率可以压得很低，如O(logaN)，这个底数a可以很大很大（每一次扩容得过程中长度增加a-1倍，扩到N需要logaN次）。</li><li>在实际使用中还可以离线扩容（等用完旧哈希表得时候，新哈希表已经建好并替换了旧哈希表了）</li></ul><p>在jvm中，桶后接得是红黑树。</p><p>例子：有一个很大的文本文件中（100T），每一行是一个字符串，找出重复的字符串并打印。（大数据问题）（使用哈希来进行分流）</p><ol><li>直接问你可以给我多少台机器?<ul><li>给每一台机器编号 0 1 2 … 999</li></ul></li><li>读出每一行，利用hash函数计算出一个hashcode，然后mod1000，值是多少，就放在相应的那个机器中。</li><li>这样相同的字符串会分配到相同的机器上。</li><li>这样对于100T文件，如果有m种字符串的话，会将这m种字符串均匀的分配到这1000台机器中，这样的话大大的降低了单机的样本（1000台机器并发）。如果还是太大，就再次使用hash来分成多个小文件，来让单机跑多个并行任务。</li></ol><p>利用hash来将大任务化简成小任务，小任务化简成巨小的任务。</p><p>思想：相同输入产生相同输出；不同输入均匀分布。</p><hr><p>持续更新中！！！</p>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-二叉树篇</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20200108-data-struct-binary-tree.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>本篇涉及树的遍历方式、序列化与反序列化、平衡二叉树、平衡搜索二叉树</p></blockquote><a id="more"></a><hr><p>持续更新中！！！</p>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>剑指Offer学习目录</title>
     <url>/%E5%89%91%E6%8C%87Offer/20200108-%E5%89%91%E6%8C%87Offer_0.html</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>剑指Offer学习目录（Python实现）</p></blockquote><a id="more"></a><p>待更新！！！</p><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><blockquote><p>【面试题】1~2</p></blockquote><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><blockquote><p>【面试题】3~9</p></blockquote><h2 id="算法和数据操作"><a href="#算法和数据操作" class="headerlink" title="算法和数据操作"></a>算法和数据操作</h2><blockquote><p>【面试题】10~15</p></blockquote><h2 id="高质量的代码"><a href="#高质量的代码" class="headerlink" title="高质量的代码"></a>高质量的代码</h2><blockquote><p>【面试题】16~26</p></blockquote><h2 id="解决面试题的思路"><a href="#解决面试题的思路" class="headerlink" title="解决面试题的思路"></a>解决面试题的思路</h2><blockquote><p>【面试题】27~38</p></blockquote><h2 id="优化时间和空间效率"><a href="#优化时间和空间效率" class="headerlink" title="优化时间和空间效率"></a>优化时间和空间效率</h2><blockquote><p>【面试题】39~52</p></blockquote><h2 id="面试中的各项能力"><a href="#面试中的各项能力" class="headerlink" title="面试中的各项能力"></a>面试中的各项能力</h2><blockquote><p>【面试题】53~66</p></blockquote><h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><blockquote><p>【面试题】67~68</p></blockquote>]]></content>
@@ -10,6 +46,30 @@
       <tags>
         <tag>学习笔记</tag>
         <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-链表相关</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20200107-data-struct-list.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>本篇介绍链表相关的基础题目。</p></blockquote><a id="more"></a><h3 id="铺垫"><a href="#铺垫" class="headerlink" title="铺垫"></a>铺垫</h3><h4 id="python中链表的结构"><a href="#python中链表的结构" class="headerlink" title="python中链表的结构"></a>python中链表的结构</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 链表结点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        self.item = item</span><br><span class="line">        self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure><h3 id="题目十"><a href="#题目十" class="headerlink" title="题目十"></a>题目十</h3><h4 id="打印两个有序链表的公共部分"><a href="#打印两个有序链表的公共部分" class="headerlink" title="打印两个有序链表的公共部分"></a>打印两个有序链表的公共部分</h4><p>题目：给定两个有序链表的头指针head1和head2，打印两个链表的公共部分。</p><p>思路：使用外排</p><p>代码：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_common</span><span class="params">(h1, h2)</span>:</span></span><br><span class="line">    p1 = h1.head</span><br><span class="line">    p2 = h2.head</span><br><span class="line">    <span class="keyword">while</span> p1 <span class="keyword">and</span> p2:  <span class="comment"># 边界</span></span><br><span class="line">        <span class="keyword">if</span> p1.item &lt; p2.item:</span><br><span class="line">            p1 = p1.next</span><br><span class="line">        <span class="keyword">elif</span> p1.item &gt; p2.item:</span><br><span class="line">            p2 = p2.next</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(p1.item)</span><br><span class="line">            p1 = p1.next</span><br><span class="line">            p2 = p2.next</span><br></pre></td></tr></table></figure><h3 id="题目十一"><a href="#题目十一" class="headerlink" title="题目十一"></a>题目十一</h3><p>从这个题往后是与链表有关的，链表的优化常常是通过降低空间复杂度来完成的，对于笔试速度优先，不必考虑，对于面试，需要考虑。</p><h4 id="判断一个链表是否为回文结构"><a href="#判断一个链表是否为回文结构" class="headerlink" title="判断一个链表是否为回文结构"></a>判断一个链表是否为回文结构</h4><p>题目：给定一个链表的头节点head，请判断该链表是否为回文结构。</p><p>例如： 1 -&gt; 2 -&gt; 1 返回true ，1 -&gt; 2 -&gt; 2 -&gt; 1 返回true，1 -&gt; 2 -&gt; 3 返回false</p><p>思路1：将链表的内容放入栈，然后用出栈的元素，与链表比较，会问结构相同。</p><p>代码1：借助栈</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># need n extra space</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_palindrome1</span><span class="params">(head)</span>:</span></span><br><span class="line">    stack = Stack()</span><br><span class="line">    h1 = head</span><br><span class="line">    <span class="keyword">while</span> h1:</span><br><span class="line">        stack.put(h1.item)</span><br><span class="line">        h1 = h1.next</span><br><span class="line">    <span class="keyword">while</span> head:</span><br><span class="line">        <span class="keyword">if</span> head.item != stack.get():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        head = head.next</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure><p>思路2：一个快指针（一次两个元素），一个慢指针（一次一个元素），这样当快指针到达终点的时候，慢指针位于链表的中央位置，所以，从慢指针位置处开始入栈，然后用入栈的那部分与前半段进行比较。</p><p>代码2：快、慢指针</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># need n/2 extra space</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_palindrome2</span><span class="params">(head)</span>:</span></span><br><span class="line">    stack = Stack()</span><br><span class="line">    right = head  <span class="comment"># 快指针</span></span><br><span class="line">    mid = head  <span class="comment"># 慢指针</span></span><br><span class="line">    <span class="keyword">while</span> right.next:</span><br><span class="line">        <span class="comment"># 快速找到栈的中央（右侧）</span></span><br><span class="line">        right = right.next.next</span><br><span class="line">        mid = mid.next</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> mid:</span><br><span class="line">        <span class="comment"># 右半部分入栈</span></span><br><span class="line">        stack.put(mid.item)</span><br><span class="line">        mid = mid.next</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> stack.empty():</span><br><span class="line">        <span class="comment"># 链表的左半部分与出栈元素比较</span></span><br><span class="line">        <span class="keyword">if</span> head.item != stack.get():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        head = head.next</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure><p>进阶：如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)</p><hr><p>持续更新中！！！</p>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-数组相关</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20191226-data-struct-array.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>本篇介绍数组相关的基础题目。</p></blockquote><a id="more"></a><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>用数组结构实现大小固定的队列和栈。（难度相当于一面的第一题）</p><h4 id="实现栈"><a href="#实现栈" class="headerlink" title="实现栈"></a>实现栈</h4><ul><li>index指向的是 <strong>新来的数要添加的位置</strong>。</li><li>size 指的是固定的长度。</li></ul><p>代码：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用数组结构实现大小固定的队列和栈。（难度相当于一面的第一题）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayStack</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    固定数组实现栈</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, initsize)</span>:</span></span><br><span class="line">        <span class="comment"># initsize 为空间的大小</span></span><br><span class="line">        <span class="keyword">if</span> initsize &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The init size is less than 0'</span>)</span><br><span class="line">        self.arr = [<span class="literal">None</span>] * initsize</span><br><span class="line">        self.index = <span class="number">0</span>  <span class="comment"># 当前的指向</span></span><br><span class="line">        self.size = initsize</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.index == self.size:</span><br><span class="line">            <span class="comment"># 满了</span></span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The stack is full'</span>)</span><br><span class="line">        self.arr[self.index] = val</span><br><span class="line">        self.index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.index == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 空了</span></span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The stack is empty'</span>)</span><br><span class="line">        self.index -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.arr[self.index]</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 查看栈顶</span></span><br><span class="line">        <span class="keyword">if</span> self.index == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 空了</span></span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The stack is empty'</span>)</span><br><span class="line">        <span class="keyword">return</span> self.arr[self.index - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1 = ArrayStack(<span class="number">1</span>)</span><br><span class="line">s1.push(<span class="number">1</span>)</span><br><span class="line">print(s1.top)</span><br><span class="line"><span class="comment"># s1.push(1)</span></span><br></pre></td></tr></table></figure><h4 id="实现队列"><a href="#实现队列" class="headerlink" title="实现队列"></a>实现队列</h4><p><strong>循环利用这个数组</strong></p><ul><li>start 变量指的是 <strong>拿取数据的位置</strong>。</li><li>end 变量指的是 <strong>新来的数要添加的位置</strong>。</li><li>size 指的已有元素的个数。</li></ul><p>三个变量之间的关系：</p><ul><li>start与end没有关系。</li><li>start与size有关：如果size不等于0，总把start位置处的数据取出来。</li><li>end与size有关：如果size没超最大值，总把新来的数据放到end。</li></ul><p>引入size的好处：</p><ul><li>start与end没有关系，所以不容易判断，何时追上了（满），何时为空，实现start 与 end 的解码。</li><li>有了size，加一个数，拿走一个数仅有size控制，简单很多。</li></ul><p>实现：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用数组结构实现大小固定的队列和栈。（难度相当于一面的第一题）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayQueue</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    固定数组实现队列</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,initsize)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> initsize &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The init size is less than 0'</span>)</span><br><span class="line">        self.arr = [<span class="literal">None</span>] * initsize</span><br><span class="line">        self.size = <span class="number">0</span></span><br><span class="line">        self.start = <span class="number">0</span></span><br><span class="line">        self.end = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,val)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.size ==len(self.arr):</span><br><span class="line">            <span class="comment"># 满了</span></span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The queue is full'</span>)</span><br><span class="line">        self.size += <span class="number">1</span></span><br><span class="line">        self.arr[self.end] = val</span><br><span class="line">        self.end = <span class="number">0</span> <span class="keyword">if</span> self.end == len(self.arr) - <span class="number">1</span> <span class="keyword">else</span> self.end + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">poll</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.size == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 队列为空</span></span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'The queue is empty'</span>)</span><br><span class="line">        self.size -= <span class="number">1</span></span><br><span class="line">        ret = self.arr[self.start]</span><br><span class="line">        <span class="comment"># 到达列表末尾就重新回到列表开头</span></span><br><span class="line">        self.start = <span class="number">0</span> <span class="keyword">if</span> self.start == len(self.arr) - <span class="number">1</span> <span class="keyword">else</span> self.start + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.size == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">return</span> self.arr[self.start]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = ArrayQueue(<span class="number">3</span>)</span><br><span class="line">a.push(<span class="number">1</span>)</span><br><span class="line">a.push(<span class="number">2</span>)</span><br><span class="line">a.push(<span class="number">3</span>)</span><br><span class="line">print(a.poll())</span><br><span class="line">print(a.poll())</span><br><span class="line">print(a.poll())</span><br><span class="line">a.push(<span class="number">2</span>)</span><br><span class="line">a.push(<span class="number">3</span>)</span><br><span class="line">a.push(<span class="number">34</span>)</span><br><span class="line">print(a.poll())</span><br><span class="line">print(a.poll())</span><br><span class="line">print(a.poll())</span><br></pre></td></tr></table></figure><h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素的操作。（年年都考）</p><p>要求：</p><ol><li>pop、push、getMin操作的时间复杂度都是O(1)。</li><li>设计的栈类型可以使用现成的栈结构。</li></ol><p>思路：</p><ul><li>使用两个栈，data栈保存数据，<strong>min栈栈顶保存最小值</strong>，如果压入的数据比栈顶数据大，则将栈顶数据复制并压入；如果压入的数据比栈顶数据小，就把该数压入。</li><li>在弹出数据的时候同步弹出就行。</li></ul><p>理解：</p><ul><li>data栈顶保存的是最新添加进入的数字，min栈的栈顶保存的是最新的这个数字与底下的数据进行比较后选出的较小值。这样pop后，不会对下面的数据产生影响。</li></ul><p>实现：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayStack</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.data = []</span><br><span class="line">        self.mins = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        self.data.append(val)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> len(self.mins) == <span class="number">0</span> :</span><br><span class="line">            self.mins.append(val)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> self.mins[<span class="number">-1</span>] &lt;= val:</span><br><span class="line">                self.mins.append(self.mins[<span class="number">-1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.mins.append(val)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(self.data) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.mins.pop()</span><br><span class="line">        <span class="keyword">return</span> self.data.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_min</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(self.mins) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># mins栈顶元素，为最小值</span></span><br><span class="line">        <span class="keyword">return</span> self.mins[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">a = ArrayStack()</span><br><span class="line">a.push(<span class="number">5</span>)</span><br><span class="line">a.push(<span class="number">2</span>)</span><br><span class="line">a.push(<span class="number">3</span>)</span><br><span class="line">print(a.get_min())  <span class="comment"># 2</span></span><br><span class="line">print(a.pop())  	<span class="comment"># 3</span></span><br><span class="line">print(a.get_min())	<span class="comment"># 2</span></span><br></pre></td></tr></table></figure><h3 id="题目三"><a href="#题目三" class="headerlink" title="题目三"></a>题目三</h3><p>场景：图的深度优先遍历，通常使用栈来实现的，如果面试官让你使用队列呢？</p><ul><li>实际上就是先用队列实现了栈，然后用这个栈来实现图的深度优先遍历。</li></ul><h4 id="队列实现栈"><a href="#队列实现栈" class="headerlink" title="队列实现栈"></a>队列实现栈</h4><ul><li>准备两个队列，一个队列中放入值</li><li>pop时，先将 n-1 个值移动到另一个队列中，然后poll出最后这个值就可以。</li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoQueueStack</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">'''两个队列实现一个栈'''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.data = Queue()</span><br><span class="line">        self.help = Queue()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        self.data.put(val)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.data.empty():</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Stack is empty'</span>)</span><br><span class="line">        <span class="keyword">while</span> self.data.qsize() &gt; <span class="number">1</span>:</span><br><span class="line">            self.help.put(self.data.get())</span><br><span class="line">        res = self.data.get()</span><br><span class="line">        self.data, self.help = self.help, self.data</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.data.empty():</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Stack is empty'</span>)</span><br><span class="line">        <span class="keyword">while</span> self.data.qsize() &gt; <span class="number">1</span>:</span><br><span class="line">            self.help.put(self.data.get())</span><br><span class="line">        res = self.data.get()</span><br><span class="line">        self.help.put(res)</span><br><span class="line">        self.data, self.help = self.help, self.data</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">t = TwoQueueStack()</span><br><span class="line">t.push(<span class="number">5</span>)</span><br><span class="line">t.push(<span class="number">4</span>)</span><br><span class="line">t.push(<span class="number">3</span>)</span><br><span class="line">print(t.top) 	<span class="comment"># 3</span></span><br><span class="line">print(t.pop())	<span class="comment"># 3</span></span><br><span class="line">print(t.pop())	<span class="comment"># 4</span></span><br></pre></td></tr></table></figure><h4 id="栈实现队列"><a href="#栈实现队列" class="headerlink" title="栈实现队列"></a>栈实现队列</h4><ul><li>准备两个栈,push栈，pop栈</li><li>push栈中存数据，pop栈中取数据</li><li>如果要pop数据，需要将push栈中所有数据都放入pop栈；</li><li>如果pop数据时，pop栈不为空，则push栈中的数据不能放入pop栈中</li></ul><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> LifoQueue</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoStackQueue</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.stack_push = LifoQueue()</span><br><span class="line">        self.stack_pop = LifoQueue()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,val)</span>:</span></span><br><span class="line">        self.stack_push.put(val)</span><br><span class="line">        self.dao()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">poll</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> (self.stack_push.empty() <span class="keyword">and</span> self.stack_pop.empty()):</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Queue is empty!'</span>)</span><br><span class="line">        self.dao()</span><br><span class="line">        <span class="keyword">return</span> self.stack_pop.get(block=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dao</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''将push栈中的数据 到 在pop栈中'''</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.stack_pop.empty():</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> self.stack_push.empty():</span><br><span class="line">            self.stack_pop.put(self.stack_push.get(block=<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line">t = TwoStackQueue()</span><br><span class="line">t.push(<span class="number">1</span>)</span><br><span class="line">t.push(<span class="number">2</span>)</span><br><span class="line">t.push(<span class="number">3</span>)</span><br><span class="line">print(t.poll())</span><br><span class="line">print(t.poll())</span><br><span class="line">print(t.poll())</span><br></pre></td></tr></table></figure><h3 id="题目四"><a href="#题目四" class="headerlink" title="题目四"></a>题目四</h3><h4 id="猫狗队列"><a href="#猫狗队列" class="headerlink" title="猫狗队列"></a>猫狗队列</h4><p>宠物、狗和猫的类如下：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pet</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,types)</span>:</span></span><br><span class="line">		self.types = types</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_pet_type</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.types</span><br></pre></td></tr></table></figure><p>实现一种猫狗队列的结构，要求如下：用户可以调用add方法将cat类或dog类的实例放入队列；用户可以调用pollAll方法，将队列中所有的实例按照进队列的先后顺序依次弹出；用户可以调用pollCat方法，将队列中cat类的实例按照进队列的先后顺序依次弹出；用户可以调用isEmpty方法，检查队列中是否有dog类的实例；用户可以调用isCatEmpty方法，检查队列中是否有cat类的实例。</p><h3 id="题目五"><a href="#题目五" class="headerlink" title="题目五"></a>题目五</h3><h4 id="转圈打印矩阵"><a href="#转圈打印矩阵" class="headerlink" title="转圈打印矩阵"></a>转圈打印矩阵</h4><p><strong>宏观调度问题</strong></p><p>给定一个整型矩阵matrix，请按照转圈的方式打印它。</p><p>例如：</p><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> -&gt;	<span class="number">2</span> -&gt; 	<span class="number">3</span> -&gt;   	<span class="number">4</span> </span><br><span class="line">					   ↓</span><br><span class="line"><span class="number">5</span>  	-&gt;	<span class="number">6</span> 	-&gt;	 <span class="number">7</span>		<span class="number">8</span> </span><br><span class="line">↑				↓	   ↓</span><br><span class="line"><span class="number">9</span> 		<span class="number">10</span> 	&lt;-	<span class="number">11</span> 	    <span class="number">12</span> </span><br><span class="line">↑					   ↓</span><br><span class="line"><span class="number">13</span> 	&lt;-	<span class="number">14</span> 	&lt;-	<span class="number">15</span> 	&lt;-	<span class="number">16</span></span><br></pre></td></tr></table></figure><p>打印结果为：1，2，3，4，8，12，16，15，14，13，9，5，6，7，11，10</p><p>要求：额外空间复杂度为O(1)</p><p>代码:</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spiral_order_print</span><span class="params">(m)</span>:</span></span><br><span class="line">    tr, tc = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    dr, dc = len(m) - <span class="number">1</span>, len(m[<span class="number">0</span>]) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> tr &lt;= dr <span class="keyword">and</span> tc &lt;= dc:</span><br><span class="line">        print_edge(m, tr, tc, dr, dc)</span><br><span class="line">        <span class="comment"># 打印完一圈后，左上角的点向右下角移动，右下角的点向左上角移动。</span></span><br><span class="line">        tr += <span class="number">1</span></span><br><span class="line">        tc += <span class="number">1</span></span><br><span class="line">        dr -= <span class="number">1</span></span><br><span class="line">        dc -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_edge</span><span class="params">(m, tr, tc, dr, dc)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    打印矩形上的值</span></span><br><span class="line"><span class="string">    :param tr: 左上角的行</span></span><br><span class="line"><span class="string">    :param tc: 左上角的列</span></span><br><span class="line"><span class="string">    :param dr: 右下角的行</span></span><br><span class="line"><span class="string">    :param dc: 右下角的列</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> tr == dr:</span><br><span class="line">        <span class="comment"># 只有一行</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(tc, dc + <span class="number">1</span>):</span><br><span class="line">            print(m[tr][i])</span><br><span class="line">    <span class="keyword">elif</span> tc == dc:</span><br><span class="line">        <span class="comment"># 只有一列</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(tr, dr + <span class="number">1</span>):</span><br><span class="line">            print(m[i][tc])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        cur_c = tc</span><br><span class="line">        cur_r = tr</span><br><span class="line">        <span class="keyword">while</span> cur_c != dc:</span><br><span class="line">            print(m[cur_r][cur_c])</span><br><span class="line">            cur_c += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> cur_r != dr:</span><br><span class="line">            print(m[cur_r][cur_c])</span><br><span class="line">            cur_r += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> cur_c != tc:</span><br><span class="line">            print(m[cur_r][cur_c])</span><br><span class="line">            cur_c -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> cur_r != tr:</span><br><span class="line">            print(m[cur_r][cur_c])</span><br><span class="line">            cur_r -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">li = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">    [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">    [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>],</span><br><span class="line">    [<span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>]</span><br><span class="line">]</span><br><span class="line">spiral_order_print(li)</span><br></pre></td></tr></table></figure><h3 id="题目六"><a href="#题目六" class="headerlink" title="题目六"></a>题目六</h3><h4 id="矩阵旋转"><a href="#矩阵旋转" class="headerlink" title="矩阵旋转"></a>矩阵旋转</h4><p><strong>宏观调度问题</strong></p><p>扩展为一个N*N的正方形，顺时针旋转90度。要求：额外空间复杂度为O(1)</p><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span></span><br><span class="line"><span class="number">4</span>	<span class="number">5</span>	<span class="number">6</span></span><br><span class="line"><span class="number">7</span>	<span class="number">8</span>	<span class="number">9</span></span><br><span class="line">↓</span><br><span class="line"><span class="number">7</span>	<span class="number">4</span>	<span class="number">1</span></span><br><span class="line"><span class="number">8</span>	<span class="number">5</span>	<span class="number">2</span></span><br><span class="line"><span class="number">9</span>	<span class="number">6</span>	<span class="number">3</span></span><br></pre></td></tr></table></figure><p>思路：</p><ul><li>同上面的转圈，只要能把一圈做好，剩下就是一个缩小规模，重复调用的过程。</li><li>对于一圈中的所有元素，4个角要交换位置。</li></ul><p>代码：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(m)</span>:</span></span><br><span class="line">    tr = tc = <span class="number">0</span></span><br><span class="line">    dr = dc = len(m) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> tr &lt; dr:</span><br><span class="line">        rotate_edge(m, tr, tc, dr, dc)</span><br><span class="line">        tr += <span class="number">1</span></span><br><span class="line">        tc += <span class="number">1</span></span><br><span class="line">        dr -= <span class="number">1</span></span><br><span class="line">        dc -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate_edge</span><span class="params">(m, tr, tc, dr, dc)</span>:</span></span><br><span class="line">    <span class="comment"># 处理一个正方形</span></span><br><span class="line">    times = dc - tc</span><br><span class="line">    tmp = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(times):</span><br><span class="line">        tmp = m[tr][tc + i]  <span class="comment"># 取出左上角</span></span><br><span class="line">        m[tr][tc + i] = m[dr - i][tc]  <span class="comment"># 覆盖左上角</span></span><br><span class="line">        m[dr - i][tc] = m[dr][dc - i]  <span class="comment"># 覆盖左下角</span></span><br><span class="line">        m[dr][dc - i] = m[tr + i][dc]  <span class="comment"># 覆盖右下角</span></span><br><span class="line">        m[tr + i][dc] = tmp			  <span class="comment"># 覆盖左上角	</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">li = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">    [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line">rotate(li)</span><br><span class="line">print(li)</span><br></pre></td></tr></table></figure><hr><p>持续更新中！！！</p>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -655,8 +715,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -668,8 +728,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -681,8 +741,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -694,8 +754,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -707,8 +767,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -720,8 +780,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -733,8 +793,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -746,8 +806,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -759,8 +819,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -772,8 +832,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -785,8 +845,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -798,8 +858,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -812,8 +872,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -838,8 +898,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -864,8 +924,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -889,8 +949,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -902,8 +962,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -928,8 +988,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -993,8 +1053,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -1019,8 +1079,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -1032,8 +1092,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
@@ -1045,8 +1105,8 @@
       </categories>
       <tags>
         <tag>学习笔记</tag>
-        <tag>Web前端</tag>
         <tag>django</tag>
+        <tag>Web前端</tag>
       </tags>
   </entry>
   <entry>
