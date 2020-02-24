@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chennq.com/%E5%89%91%E6%8C%87Offer/20200108-%E5%89%91%E6%8C%87Offer_0.html</loc>
+    
+    <lastmod>2020-02-24T07:05:02.893Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/django/20190625-django_0.html</loc>
+    
+    <lastmod>2020-02-24T07:04:47.468Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
+    
+    <lastmod>2020-02-24T07:04:03.595Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/learn-python/20190320-python_index.html</loc>
+    
+    <lastmod>2020-02-24T07:03:43.106Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/Vue-js/20191021-learn-Vue-0.html</loc>
+    
+    <lastmod>2020-02-24T07:03:26.494Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.com/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/20191016-data_analysis_1.html</loc>
+    
+    <lastmod>2020-02-24T07:02:20.071Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chennq.com/learn-python/20190519-python-programming-with-threads.html</loc>
     
     <lastmod>2020-01-29T00:29:48.147Z</lastmod>
@@ -12,13 +54,6 @@
     <loc>https://chennq.com/MySQL%E5%AD%A6%E4%B9%A0/20190527-MySQL_DML.html</loc>
     
     <lastmod>2020-01-13T09:19:05.302Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/%E5%89%91%E6%8C%87Offer/20200108-%E5%89%91%E6%8C%87Offer_0.html</loc>
-    
-    <lastmod>2020-01-11T12:15:32.476Z</lastmod>
     
   </url>
   
@@ -68,13 +103,6 @@
     <loc>https://chennq.com/Flask/20191210-flask_4.html</loc>
     
     <lastmod>2019-12-16T08:11:16.915Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/learn-python/20190320-python_index.html</loc>
-    
-    <lastmod>2019-12-16T06:20:23.498Z</lastmod>
     
   </url>
   
@@ -131,13 +159,6 @@
     <loc>https://chennq.com/learn-python/20191029-python-memory-management-garbage-collection.html</loc>
     
     <lastmod>2019-12-11T14:16:01.725Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
-    
-    <lastmod>2019-12-11T06:57:35.289Z</lastmod>
     
   </url>
   
@@ -292,13 +313,6 @@
     <loc>https://chennq.com/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/20191021-data_analysis_3.html</loc>
     
     <lastmod>2019-11-04T17:26:25.570Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/20191016-data_analysis_1.html</loc>
-    
-    <lastmod>2019-11-04T17:25:47.198Z</lastmod>
     
   </url>
   
@@ -852,20 +866,6 @@
     <loc>https://chennq.com/HTML/20190610-HTML_1.html</loc>
     
     <lastmod>2019-11-04T16:28:45.183Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/django/20190625-django_0.html</loc>
-    
-    <lastmod>2019-11-04T16:20:58.357Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/Vue-js/20191021-learn-Vue-0.html</loc>
-    
-    <lastmod>2019-11-04T16:20:32.069Z</lastmod>
     
   </url>
   
