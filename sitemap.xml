@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chennq.com/about/index.html</loc>
+    
+    <lastmod>2020-02-24T07:24:54.847Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chennq.com/%E5%89%91%E6%8C%87Offer/20200108-%E5%89%91%E6%8C%87Offer_0.html</loc>
     
     <lastmod>2020-02-24T07:05:02.893Z</lastmod>
@@ -159,13 +166,6 @@
     <loc>https://chennq.com/learn-python/20191029-python-memory-management-garbage-collection.html</loc>
     
     <lastmod>2019-12-11T14:16:01.725Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.com/about/index.html</loc>
-    
-    <lastmod>2019-12-10T12:32:36.043Z</lastmod>
     
   </url>
   
