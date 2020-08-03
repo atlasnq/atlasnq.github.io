@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chennq.top/Web%E5%89%8D%E7%AB%AF/20190609-Web_index.html</loc>
+    
+    <lastmod>2020-08-03T07:12:44.051Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/Flask/20191202-flask_0.html</loc>
+    
+    <lastmod>2020-08-03T07:12:11.370Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/django/20190625-django_0.html</loc>
+    
+    <lastmod>2020-08-03T07:11:29.530Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/learn-python/20190320-python_index.html</loc>
+    
+    <lastmod>2020-08-03T07:11:08.607Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/about/index.html</loc>
+    
+    <lastmod>2020-07-27T14:25:26.439Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chennq.top/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/20200229-situation-awareness-1.html</loc>
     
-    <lastmod>2020-03-22T07:43:41.519Z</lastmod>
+    <lastmod>2020-06-04T13:58:57.094Z</lastmod>
     
   </url>
   
@@ -79,30 +114,9 @@
   </url>
   
   <url>
-    <loc>https://chennq.top/about/index.html</loc>
-    
-    <lastmod>2020-02-24T07:24:54.847Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/django/20190625-django_0.html</loc>
-    
-    <lastmod>2020-02-24T07:04:47.468Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://chennq.top/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
     
     <lastmod>2020-02-24T07:04:03.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/learn-python/20190320-python_index.html</loc>
-    
-    <lastmod>2020-02-24T07:03:43.106Z</lastmod>
     
   </url>
   
@@ -124,13 +138,6 @@
     <loc>https://chennq.top/MySQL%E5%AD%A6%E4%B9%A0/20190527-MySQL_DML.html</loc>
     
     <lastmod>2020-01-13T09:19:05.302Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/Flask/20191202-flask_0.html</loc>
-    
-    <lastmod>2020-01-08T10:09:50.504Z</lastmod>
     
   </url>
   
@@ -481,13 +488,6 @@
     <loc>https://chennq.top/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190619-win10-install-GPU-Pytorch.html</loc>
     
     <lastmod>2019-11-04T17:18:36.950Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/Web%E5%89%8D%E7%AB%AF/20190609-Web_index.html</loc>
-    
-    <lastmod>2019-11-04T17:18:17.337Z</lastmod>
     
   </url>
   

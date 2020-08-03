@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chennq.top/Web%E5%89%8D%E7%AB%AF/20190609-Web_index.html</loc>
+    <lastmod>2020-08-03</lastmod>
+  </url>  <url>
+    <loc>https://chennq.top/Flask/20191202-flask_0.html</loc>
+    <lastmod>2020-08-03</lastmod>
+  </url>  <url>
+    <loc>https://chennq.top/django/20190625-django_0.html</loc>
+    <lastmod>2020-08-03</lastmod>
+  </url>  <url>
+    <loc>https://chennq.top/learn-python/20190320-python_index.html</loc>
+    <lastmod>2020-08-03</lastmod>
+  </url>  <url>
     <loc>https://chennq.top/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/20200229-situation-awareness-1.html</loc>
-    <lastmod>2020-03-22</lastmod>
+    <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>https://chennq.top/django/20190719-django_14_QueryDict.html</loc>
     <lastmod>2020-03-20</lastmod>
@@ -34,13 +46,7 @@
     <loc>https://chennq.top/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20200107-data-struct-list.html</loc>
     <lastmod>2020-02-24</lastmod>
   </url>  <url>
-    <loc>https://chennq.top/django/20190625-django_0.html</loc>
-    <lastmod>2020-02-24</lastmod>
-  </url>  <url>
     <loc>https://chennq.top/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
-    <lastmod>2020-02-24</lastmod>
-  </url>  <url>
-    <loc>https://chennq.top/learn-python/20190320-python_index.html</loc>
     <lastmod>2020-02-24</lastmod>
   </url>  <url>
     <loc>https://chennq.top/Vue-js/20191021-learn-Vue-0.html</loc>
@@ -51,9 +57,6 @@
   </url>  <url>
     <loc>https://chennq.top/MySQL%E5%AD%A6%E4%B9%A0/20190527-MySQL_DML.html</loc>
     <lastmod>2020-01-13</lastmod>
-  </url>  <url>
-    <loc>https://chennq.top/Flask/20191202-flask_0.html</loc>
-    <lastmod>2020-01-08</lastmod>
   </url>  <url>
     <loc>https://chennq.top/Web%E5%89%8D%E7%AB%AF/20190609-Web_1.html</loc>
     <lastmod>2019-12-23</lastmod>
@@ -203,9 +206,6 @@
     <lastmod>2019-11-04</lastmod>
   </url>  <url>
     <loc>https://chennq.top/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190619-win10-install-GPU-Pytorch.html</loc>
-    <lastmod>2019-11-04</lastmod>
-  </url>  <url>
-    <loc>https://chennq.top/Web%E5%89%8D%E7%AB%AF/20190609-Web_index.html</loc>
     <lastmod>2019-11-04</lastmod>
   </url>  <url>
     <loc>https://chennq.top/jQuery/20190615-jQuery_1.html</loc>
