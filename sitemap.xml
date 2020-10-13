@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chennq.top/django/20190625-django_0.html</loc>
+    
+    <lastmod>2020-10-13T16:30:47.496Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/learn-python/20190320-python_index.html</loc>
+    
+    <lastmod>2020-10-13T16:30:33.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
+    
+    <lastmod>2020-10-13T16:30:17.009Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/Vue-js/20191021-learn-Vue-0.html</loc>
+    
+    <lastmod>2020-10-13T16:30:02.306Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chennq.top/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/20190920-Web_Spider_1.html</loc>
+    
+    <lastmod>2020-10-13T16:29:47.429Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chennq.top/MyBatis%E5%AD%A6%E4%B9%A0/20201011-MyBatis_01.html</loc>
     
     <lastmod>2020-10-13T16:26:37.242Z</lastmod>
@@ -40,20 +75,6 @@
     <loc>https://chennq.top/Flask/20191202-flask_0.html</loc>
     
     <lastmod>2020-08-03T07:12:11.370Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/django/20190625-django_0.html</loc>
-    
-    <lastmod>2020-08-03T07:11:29.530Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/learn-python/20190320-python_index.html</loc>
-    
-    <lastmod>2020-08-03T07:11:08.607Z</lastmod>
     
   </url>
   
@@ -103,20 +124,6 @@
     <loc>https://chennq.top/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20200107-data-struct-list.html</loc>
     
     <lastmod>2020-02-24T14:55:06.253Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/Pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/20190621-learning-PyTorch_index.html</loc>
-    
-    <lastmod>2020-02-24T07:04:03.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/Vue-js/20191021-learn-Vue-0.html</loc>
-    
-    <lastmod>2020-02-24T07:03:26.494Z</lastmod>
     
   </url>
   
@@ -894,13 +901,6 @@
     <loc>https://chennq.top/HTML/20190610-HTML_1.html</loc>
     
     <lastmod>2019-11-04T16:28:45.183Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chennq.top/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/20190920-Web_Spider_1.html</loc>
-    
-    <lastmod>2019-11-04T16:20:15.271Z</lastmod>
     
   </url>
   
